@@ -1,0 +1,31 @@
+object -> '{' pair-list '}'
+
+pair-list -> pair | pair ',' pair-list
+
+pair -> string ':' value
+
+array -> '[' value-list ']'
+
+value-list -> value | value ',' value-list
+
+value -> string | number | object | array | 'true' | 'false' | 'null'
+
+string -> '"' characters '"'
+
+characters -> "" | character characters
+
+character -> any valid Unicode character except " and \
+
+number -> int frac exp
+
+int -> digit | digit1-9 digits | '-' digit | '-' digit1-9 digits
+
+frac -> "" | '.' digits
+
+exp -> "" | 'e' sign digits | 'E' sign digits
+
+digits -> digit | digit digits
+
+sign -> "" | '+' | '-'
+
+digit -> '0' | '1' | ... | '9'
