@@ -1,0 +1,1 @@
+cmake --build ./build --config release && cd build/test && ctest --output-on-failure -V && cd ..

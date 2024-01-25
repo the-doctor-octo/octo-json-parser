@@ -3,7 +3,7 @@
   "tasks": [
     {
       "type": "cppbuild",
-      "label": "TheBuildTask",
+      "label": "CL",
       "command": "cl.exe",
       "args": [
         "/Zi",
@@ -14,20 +14,37 @@
         "/Foobj\\",
         "/I${workspaceFolder}",
         "json-object.cpp",
-        "stack.cpp",
-        "main.cpp"
+        "main.cpp",
+        "json-parser.cpp",
+        "file-utils.cpp"
       ],
       "options": {
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": ["$msCompile"],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
+      "group": "build",
       "detail": "compiler: cl.exe",
       "presentation": {
         "clear": true
+      }
+    },
+    {
+      "type": "cppbuild",
+      "label": "G++ Ubuntu",
+      "command": "g++",
+      "args": [
+        "-std=c++17",
+        "-g",
+        "-o./obj/output.out",
+        "json-object.cpp",
+        "main.cpp",
+        "json-parser.cpp",
+        "file-utils.cpp"
+      ],
+      "detail": "compiler: gcc",
+      "group": {
+        "kind": "build",
+        "isDefault": true
       }
     }
   ]

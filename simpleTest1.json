@@ -1,0 +1,15 @@
+{
+  "object1": "test",
+  "tilesets": [
+    {
+      "id": 1,
+      "name": "grass",
+      "depth": -123
+    },
+    {
+      "id": 2,
+      "name": "sky",
+      "depth": 99
+    }
+  ]
+}

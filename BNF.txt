@@ -8,7 +8,9 @@ array -> '[' value-list ']'
 
 value-list -> value | value ',' value-list
 
-value -> string | number | object | array | 'true' | 'false' | 'null'
+value -> object | array | primitive
+
+primitive -> string | number  | 'true' | 'false' | 'null'
 
 string -> '"' characters '"'
 

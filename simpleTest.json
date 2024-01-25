@@ -1,0 +1,13 @@
+{
+  "compressionlevel": -1,
+  "height": 20,
+  "infinite": false,
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "tilesets/Mossy Assets/Mossy Tileset/Mossy Cavern.tsj"
+    }
+  ],
+  "tilewidth": 512,
+  "type": "map"
+}

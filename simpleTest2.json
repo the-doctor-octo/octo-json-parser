@@ -1,0 +1,13 @@
+{
+  "object1": "test",
+  "nested_object": {
+    "firstgid": 1,
+    "source": "daje",
+    "negativeNumber": -123,
+    "yetAnotherNestedObject": {
+      "BooleanTrue": true,
+      "booleanFalse": false,
+      "nullValue": null
+    }
+  }
+}

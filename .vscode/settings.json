@@ -59,6 +59,26 @@
     "ranges": "cpp",
     "span": "cpp",
     "stack": "cpp",
-    "vector": "cpp"
-  }
+    "vector": "cpp",
+    "*.in": "cpp",
+    "algorithm": "cpp",
+    "any": "cpp",
+    "chrono": "cpp",
+    "condition_variable": "cpp",
+    "list": "cpp",
+    "map": "cpp",
+    "set": "cpp",
+    "unordered_map": "cpp",
+    "forward_list": "cpp",
+    "functional": "cpp",
+    "iomanip": "cpp",
+    "optional": "cpp",
+    "sstream": "cpp",
+    "unordered_set": "cpp",
+    "variant": "cpp",
+    "xhash": "cpp",
+    "xtree": "cpp"
+  },
+  "C_Cpp.default.compilerPath": "/usr/bin/g++",
+  "cmake.configureOnOpen": false
 }
