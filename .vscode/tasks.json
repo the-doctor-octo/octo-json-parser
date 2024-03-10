@@ -13,7 +13,6 @@
         "/Fe${workspaceFolder}\\build\\main.exe",
         "/Foobj\\",
         "/I${workspaceFolder}",
-        "json-object.cpp",
         "main.cpp",
         "json-parser.cpp",
         "file-utils.cpp"
@@ -36,7 +35,6 @@
         "-std=c++17",
         "-g",
         "-o./obj/output.out",
-        "json-object.cpp",
         "main.cpp",
         "json-parser.cpp",
         "file-utils.cpp"

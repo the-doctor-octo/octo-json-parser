@@ -1,5 +1,4 @@
 #include "./include/main.hpp"
-#include "./json-object.cpp"
 #include "./include/json-parser.hpp"
 #include "./include/file-utils.hpp"
 #include "./build/ParserConfig.h"
@@ -9,7 +8,6 @@
 #include <vector>
 
 using namespace std;
-using namespace octo_data;
 
 vector<char> TOKENS[8];
 vector<char> BLACK_LIST_TOKENS[1];

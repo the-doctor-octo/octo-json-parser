@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(OctoJsonParser VERSION 1.0)
 
-add_executable(OctoJsonParser main.cpp json-parser.cpp json-object.cpp file-utils.cpp)
+add_executable(OctoJsonParser main.cpp json-parser.cpp file-utils.cpp)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
