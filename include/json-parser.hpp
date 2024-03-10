@@ -26,6 +26,7 @@ private:
     void advanceCharIndex();
     std::string buildPropertyKey();
     std::string parseUntil(const std::function<bool(char)> &condition);
+    void printLog();
 
     std::string content;
     size_t curr_char_index = 0;

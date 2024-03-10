@@ -35,11 +35,11 @@
       "type": "cppvsdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/main.exe",
-      "args": ["simpleTest1.json"],
+      "args": ["test.json"],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],
-      "console": "internalConsole",
+      "console": "integratedTerminal",
       "preLaunchTask": "CL"
     }
   ]

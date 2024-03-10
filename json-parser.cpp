@@ -101,7 +101,6 @@ std::string JSONParser::parsePrimitive()
     if (key != "")
     {
         m.emplace(key, primitiveValue);
-        cout << "m =" << m[key];
 
         // pop the last property from properties
         if (properties.size() != 0)
@@ -151,12 +150,12 @@ string JSONParser::parseString()
 string JSONParser::parseNumber()
 {
     return JSONParser::parseUntil([](char c)
-                                  { return c != ','; });
+                                  { return !isspace(c) && c != ','; });
 }
 string JSONParser::parseBooleanOrNull()
 {
     return JSONParser::parseUntil([](char c)
-                                  { return isalpha(c); });
+                                  { return !isspace(c) && isalpha(c); });
 }
 
 /** HELPERS */
@@ -216,7 +215,7 @@ std::string JSONParser::parseUntil(const std::function<bool(char)> &condition)
 {
     string string_value;
     char curr_char = JSONParser::getCurrentChar();
-    while (!isspace(curr_char) && condition(curr_char))
+    while (condition(curr_char))
     {
         string_value += JSONParser::getCharAndAdvance();
         curr_char = JSONParser::getCurrentChar();
@@ -258,4 +257,10 @@ std::string JSONParser::getProperty(std::string property)
         result = m[property];
     }
     return result;
+}
+
+void JSONParser::printLog()
+{
+    string conc_prop = JSONParser::buildPropertyKey();
+    cout << conc_prop << ": " << m.find(conc_prop)->second << endl;
 }

@@ -1,4 +1,3 @@
-#include "./include/main.hpp"
 #include "./include/json-parser.hpp"
 #include "./include/file-utils.hpp"
 #include "./build/ParserConfig.h"
