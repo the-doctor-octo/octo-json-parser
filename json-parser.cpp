@@ -67,49 +67,55 @@ void JSONParser::parseValue()
     }
     else
     {
-        JSONParser::parsePrimitive();
+        JSONValue primitive = JSONParser::parsePrimitive();
+        // traverse properties items to build the key name for the new map entry
+        std::string key = JSONParser::buildPropertyKey();
+        if (key != "")
+        {
+            m.emplace(key, primitive);
+            if (log_enabled)
+            {
+                printLog();
+            }
+
+            // pop the last property from properties
+            if (properties.size() != 0)
+            {
+                properties.pop_back();
+            }
+        }
     }
 };
 
 // primitive -> string | number | 'true' | 'false' | 'null'
-std::string JSONParser::parsePrimitive()
+JSONValue JSONParser::parsePrimitive()
 {
     const char curr_char = JSONParser::getCurrentChar();
-    std::string primitiveValue;
+    JSONValue jsonValue;
 
     if (curr_char == '"')
     {
-        primitiveValue = JSONParser::parseString();
+        jsonValue.first = JSONParser::parseString();
+        jsonValue.second = "string";
     }
     else if (std::isdigit(curr_char) || curr_char == '-' || curr_char == '+' || curr_char == '.')
     {
-        primitiveValue = JSONParser::parseNumber();
+        jsonValue.first = JSONParser::parseNumber();
+        jsonValue.second = "number";
     }
     else if (std::isalpha(curr_char))
     {
         if (curr_char == 't' || curr_char == 'f' || curr_char == 'n')
         {
-            primitiveValue = JSONParser::parseBooleanOrNull();
+            jsonValue.second = "bool";
+            if (curr_char == 'n')
+            {
+                jsonValue.second = "null";
+            }
+            jsonValue.first = JSONParser::parseBooleanOrNull();
         }
     }
-
-    // traverse properties items to build the key name for the new map entry
-    std::string key = JSONParser::buildPropertyKey();
-    if (key != "")
-    {
-        m.emplace(key, primitiveValue);
-        if (log_enabled)
-        {
-            printLog();
-        }
-
-        // pop the last property from properties
-        if (properties.size() != 0)
-        {
-            properties.pop_back();
-        }
-    }
-    return primitiveValue;
+    return jsonValue;
 }
 
 // array -> '[' value-list ']'
@@ -246,14 +252,14 @@ std::string JSONParser::getContent()
     return content;
 }
 
-void JSONParser::setContent(std::string cnt)
+void JSONParser::setContent(std::string &cnt)
 {
     content = cnt;
 }
 
-std::string JSONParser::getProperty(std::string property)
+JSONValue JSONParser::getProperty(std::string property)
 {
-    std::string result;
+    JSONValue result;
     if (property != "" && m.count(property))
     {
         result = m[property];
@@ -264,7 +270,9 @@ std::string JSONParser::getProperty(std::string property)
 void JSONParser::printLog()
 {
     string conc_prop = JSONParser::buildPropertyKey();
-    cout << conc_prop << ": " << m.find(conc_prop)->second << endl;
+    JSONValue prop = m.find(conc_prop)->second;
+    cout << conc_prop << "<" << prop.second << ">"
+         << ": " << prop.first << endl;
 }
 
 void JSONParser::setLogEnabled(bool value)

@@ -6,6 +6,9 @@
 #include <map>
 #include <vector>
 #include <functional>
+#include <utility>
+
+typedef std::pair<std::string, std::string> JSONValue;
 
 class JSONParser
 {
@@ -13,7 +16,7 @@ private:
     void parseObject();
     void parsePair();
     void parseArray();
-    std::string parsePrimitive();
+    JSONValue parsePrimitive();
     void parseValue();
     std::string parseString();
     std::string parseNumber();
@@ -30,7 +33,7 @@ private:
 
     std::string content;
     size_t curr_char_index = 0;
-    std::map<std::string, std::string> m;
+    std::map<std::string, JSONValue> m;
     std::vector<std::string> properties;
     bool log_enabled = false;
 
@@ -41,8 +44,8 @@ public:
 
     void parse();
     std::string getContent();
-    void setContent(std::string content);
-    std::string getProperty(std::string property);
+    void setContent(std::string &content);
+    JSONValue getProperty(std::string property);
     void setLogEnabled(bool value);
 };
 
