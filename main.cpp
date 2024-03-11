@@ -23,8 +23,11 @@ int main(int argc, char *argv[])
         return 0;
     }
     std::string fileContent = FileUtils::readFileContent(argv[1]);
+
     JSONParser *parser = new JSONParser(fileContent);
+    parser->setLogEnabled(true);
 
     parser->parse();
+
     return 0;
 }

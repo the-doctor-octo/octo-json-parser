@@ -32,6 +32,7 @@ private:
     size_t curr_char_index = 0;
     std::map<std::string, std::string> m;
     std::vector<std::string> properties;
+    bool log_enabled = false;
 
 public:
     JSONParser();
@@ -42,6 +43,7 @@ public:
     std::string getContent();
     void setContent(std::string content);
     std::string getProperty(std::string property);
+    void setLogEnabled(bool value);
 };
 
 #endif

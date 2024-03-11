@@ -43,11 +43,8 @@ void JSONParser::parsePair()
         string json_prop_name = JSONParser::parseString();
         properties.push_back(json_prop_name);
 
-        // Check the right-hand side of the pair
-        // if is a primitive value, as in string | number | boolean | null => store in map
         JSONParser::skipWhitespaces();
         char curr_char = JSONParser::getCurrentChar();
-
         if (curr_char == ':')
         {
             JSONParser::skipWhitespaces();
@@ -101,6 +98,10 @@ std::string JSONParser::parsePrimitive()
     if (key != "")
     {
         m.emplace(key, primitiveValue);
+        if (log_enabled)
+        {
+            printLog();
+        }
 
         // pop the last property from properties
         if (properties.size() != 0)
@@ -228,6 +229,7 @@ void JSONParser::parse()
 {
     if (content == "")
     {
+        cout << "No content loaded, use setContent" << endl;
         throw new exception("No content to parse!");
     }
     char curr_char = JSONParser::getCurrentChar();
@@ -263,4 +265,9 @@ void JSONParser::printLog()
 {
     string conc_prop = JSONParser::buildPropertyKey();
     cout << conc_prop << ": " << m.find(conc_prop)->second << endl;
+}
+
+void JSONParser::setLogEnabled(bool value)
+{
+    log_enabled = value;
 }

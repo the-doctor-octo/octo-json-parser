@@ -12,8 +12,10 @@ string FileUtils::readFileContent(string filePath)
 
     if (!file.is_open())
     {
+        cout << "File not opened. Might be not found or not have the permissions." << endl;
         return 0;
     }
+    cout << "File found. Reading content..." << endl;
 
     char current_char;
     string parsedChars;
@@ -24,6 +26,9 @@ string FileUtils::readFileContent(string filePath)
         current_char = file.get();
         fileContent += current_char;
     }
+
+    cout << "File content reading complete." << endl
+         << endl;
 
     return fileContent;
 };
