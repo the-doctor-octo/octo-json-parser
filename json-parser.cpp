@@ -206,11 +206,13 @@ std::string JSONParser::buildPropertyKey()
 
     for (it = properties.begin(); it != properties.end(); it++)
     {
-        if (it == properties.begin())
+        // if it's the first property or the property starts with an open square brakcet => it's an array element
+        // => don't prepend the dot separator
+        if (it == properties.begin() || (*it)[0] == '[')
         {
             key += *it;
         }
-        else
+        else if ((*it)[0] != '[')
         {
             key += '.' + *it;
         }
@@ -271,7 +273,7 @@ void JSONParser::printLog()
 {
     string conc_prop = JSONParser::buildPropertyKey();
     JSONValue prop = m.find(conc_prop)->second;
-    cout << conc_prop << "<" << prop.second << ">"
+    cout << conc_prop << " <" << prop.second << ">"
          << ": " << prop.first << endl;
 }
 
