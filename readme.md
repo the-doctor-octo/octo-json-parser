@@ -1,4 +1,4 @@
-# Octo Json Parser 🐙
+# Json Parser 🐙
 
 A simple json parser that includes methods to recursively traverse a json file, generating a Map where the key of an element is the dotted property name version of a json property, as in:
 
